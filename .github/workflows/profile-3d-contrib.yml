@@ -1,0 +1,23 @@
+name: Generate 3D Contribution Graph
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate 3D Contribution Graph
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+        with:
+          USERNAME: "ericemdev"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
